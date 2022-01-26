@@ -15,7 +15,8 @@ client.connect(err => {
   const collection = client.db("players").collection("cricket");
   // perform actions on the collection object
   app.post('/api/addPlayer', (req, res) => {
-      const data = req.body;
+      const { name, nickname, highScore, role, birthPlace, playerImgLink, bestBowling, team, phone, born, bio } = req.body;
+      const data = { name: name, nickname: nickname, highScore: Number(highScore), role: role, birthPlace: birthPlace, playerImgLink: playerImgLink, bestBowling: bestBowling, team: team, phone: phone, born: born, bio: bio };
       collection.insertOne(data)
       .then(result => {
           res.send(result.insertCount > 0);
